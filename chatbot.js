@@ -404,12 +404,18 @@ async function getGeminiResponseViaWorker(userMessage) {
 
 // Development only: Direct API call (exposes API key)
 async function getGeminiResponseDirect(userMessage) {
-    const systemPrompt = `You are a warm, friendly AI assistant for POKHARA, an authentic Nepalese and Indian restaurant in Bridgend, UK.
+    const systemPrompt = `You are a friendly assistant for POKHARA restaurant in Bridgend, UK.
 
 PERSONALITY:
-- Be warm, welcoming, and helpful
-- Use friendly language with occasional emojis 😊
-- Sound professional but approachable
+- Be warm but concise
+- Keep responses short (2-3 sentences max)
+- Use 1-2 emojis only when appropriate
+- Be helpful and direct
+- ALWAYS end your response with a follow-up question ending with "?"
+
+CRITICAL RULE:
+- Every single response MUST end with a question mark (?)
+- Example endings: "Would you like to order?", "Need anything else?", "Can I help with anything else?"
 
 RESTAURANT KNOWLEDGE:
 Full Menu:
@@ -501,61 +507,47 @@ function getFallbackResponse(userMessage) {
     
     // Menu request
     if (lowerMessage.includes('menu') || lowerMessage.includes('food') || lowerMessage.includes('eat')) {
-        return `Here's our delicious menu at POKHARA! 😊
+        return `Here's our menu! 🍛
 
-Nepalese Starters:
-- Momo (Chicken/Veg) - £6.95
-- Onion Bhaji (V) - £5.00
-- Samosa (Veg/Meat) - £4.50
-- Chicken Tikka Starter - £5.95
+Starters:
+- Momo - £6.95
+- Samosa - £4.50
+- Onion Bhaji - £5.00
 
-Tandoori Specialties:
-- Tandoori Chicken (Half) - £9.95
-- Seekh Kebab - £10.00
-- Lamb Chops (4pcs) - £12.95
-
-Main Courses:
-- Pokhara Special Thali - £15.95
+Mains:
 - Chicken Tikka Masala - £9.95
 - Lamb Rogan Josh - £11.95
-- King Prawn Jalfrezi - £13.95
+- Pokhara Special Thali - £15.95
 
-Sides:
-- Pilau Rice - £4.00
-- Garlic Naan - £4.00
+Tandoori:
+- Tandoori Chicken - £9.95
+- Seekh Kebab - £10.00
 
-We hope you find something you'll love! Don't forget, you can order online or call us!`;
+Would you like to order or book a table?`;
     }
     
     // Hours request
     if (lowerMessage.includes('hour') || lowerMessage.includes('open') || lowerMessage.includes('time') || lowerMessage.includes('close')) {
-        return `We're open Monday to Sunday, 5:00 PM - 11:00 PM. 🕐 We'd love to see you! Book a table or order online anytime.`;
+        return `We're open daily from 5 PM to 11 PM. 🕐 Would you like to book a table?`;
     }
     
     // Location request
     if (lowerMessage.includes('location') || lowerMessage.includes('where') || lowerMessage.includes('address') || lowerMessage.includes('find')) {
-        return `You can find us at Court Colman Manor, Pen-y-fai, Bridgend CF31 4NG. 📍 We're easy to find and have plenty of parking. See you soon!`;
+        return `We're at Court Colman Manor, Pen-y-fai, Bridgend CF31 4NG. 📍 Need directions?`;
     }
     
     // Booking request
     if (lowerMessage.includes('book') || lowerMessage.includes('reservation') || lowerMessage.includes('table')) {
-        return `We'd love to have you dine with us! 🍽️ You can book a table directly on our website or call us. We recommend booking ahead for weekends!`;
+        return `You can book a table on our website or call us. 📞 What date are you thinking?`;
     }
     
     // Specials request
     if (lowerMessage.includes('special') || lowerMessage.includes('recommend') || lowerMessage.includes('best')) {
-        return `Our most popular dishes are the Momo (authentic Nepalese dumplings) at £6.95 and the Chicken Tikka Masala at £9.95! ⭐ The Pokhara Special Thali at £15.95 is perfect if you want to try a bit of everything!`;
+        return `Our favorites: Momo (£6.95), Chicken Tikka Masala (£9.95), and the Pokhara Special Thali (£15.95). ⭐ Would you like to try one?`;
     }
     
     // Default response
-    return `Thank you for reaching out! 😊 
-
-Here's how we can help:
-- View our full menu online
-- Book a table for dine-in
-- Order takeaway
-
-Call us or visit our restaurant at Court Colman Manor, Bridgend. We're open daily from 5 PM - 11 PM!`;
+    return `Welcome to POKHARA! 😊 How can I help you today? I can share our menu, hours, location, or help you book a table.`;
 }
 
 // ==================== Message Handler ====================
@@ -617,6 +609,44 @@ async function handleSendMessage() {
     renderMessage(assistantMsg);
 
     chatbotState.conversationHistory.push({ role: 'assistant', content: aiResponse });
+
+    // Add relevant CTA buttons based on the conversation topic
+    const lowerMessage = userMessage.toLowerCase();
+    let actions = [];
+
+    if (lowerMessage.includes('menu') || lowerMessage.includes('food') || lowerMessage.includes('eat') || lowerMessage.includes('order')) {
+        actions.push({ type: 'navigate', value: 'order-online.html', label: '📋 View Full Menu' });
+        actions.push({ type: 'navigate', value: 'order-online.html', label: '🍽️ Order Now' });
+    }
+    
+    if (lowerMessage.includes('location') || lowerMessage.includes('where') || lowerMessage.includes('address') || lowerMessage.includes('direction')) {
+        actions.push({ type: 'maps', value: CONFIG.googleMapsUrl, label: '📍 Get Directions' });
+    }
+    
+    if (lowerMessage.includes('book') || lowerMessage.includes('table') || lowerMessage.includes('reservation')) {
+        actions.push({ type: 'navigate', value: 'book-table.html', label: '📅 Book Table' });
+    }
+    
+    if (lowerMessage.includes('hour') || lowerMessage.includes('open') || lowerMessage.includes('time')) {
+        actions.push({ type: 'navigate', value: 'book-table.html', label: '📅 Book Table' });
+    }
+
+    if (lowerMessage.includes('special') || lowerMessage.includes('recommend')) {
+        actions.push({ type: 'navigate', value: 'order-online.html', label: '🍽️ Order Now' });
+    }
+
+    // Show CTA buttons if we have any relevant actions
+    if (actions.length > 0) {
+        setTimeout(() => {
+            const ctaMsg = chatbotState.addMessage(
+                'assistant',
+                '',
+                'cta',
+                { actions: actions }
+            );
+            renderMessage(ctaMsg);
+        }, 300);
+    }
 }
 
 // ==================== Initialization ====================
