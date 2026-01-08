@@ -23,6 +23,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -31,6 +33,15 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Prevent any element from causing horizontal scroll */
+img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
 }
 
 h1,
@@ -56,6 +67,20 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Fix Bootstrap container-fluid overflow */
+.container-fluid {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
 }
 
 /* Common Buttons */
@@ -115,6 +140,38 @@ ul {
     align-items: center;
     gap: 25px;
     margin: 0;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    margin: 5px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .nav-link {
@@ -291,20 +348,80 @@ ul {
 @media (max-width: 768px) {
     .headerSection {
         min-height: auto;
-        padding: 40px 0;
+        padding: 15px 0;
+    }
+
+    .headerWrapper {
+        padding: 0 10px;
+        gap: 20px;
+    }
+
+    .headerContentBox {
+        padding: 20px 15px;
+        border-radius: 15px;
+        margin: 0 5px;
     }
 
     .headerContentBox h1 {
-        font-size: 36px;
+        font-size: 24px;
+        margin-bottom: 12px;
+        line-height: 1.2;
     }
 
     .headerContentBox p {
-        font-size: 16px;
+        font-size: 13px;
+        margin-bottom: 18px;
+        line-height: 1.6;
     }
 
     .orderBtn {
-        padding: 15px 40px;
-        font-size: 16px;
+        padding: 12px 25px;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .headerImageBox img {
+        border-radius: 15px;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerSection {
+        padding: 10px 0;
+    }
+
+    .headerWrapper {
+        padding: 0 8px;
+        gap: 15px;
+    }
+
+    .headerContentBox {
+        padding: 18px 12px;
+        border-radius: 12px;
+        margin: 0;
+    }
+
+    .headerContentBox h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .headerContentBox p {
+        font-size: 12px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .orderBtn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+    .headerImageBox img {
+        max-height: 200px;
     }
 }
 
@@ -1564,10 +1681,10 @@ textarea.booking-input {
 /* Chatbot Button */
 .chatbot-button {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
+    bottom: 15px;
+    right: 15px;
+    width: 55px;
+    height: 55px;
     background: var(--primary);
     border-radius: 50%;
     display: flex;
@@ -1975,23 +2092,696 @@ textarea.booking-input {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .chatbot-window {
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-        max-width: 100vw;
-        max-height: 100vh;
+        width: 300px;
+        height: 400px;
+        bottom: 70px;
+        right: 10px;
+        border-radius: 12px;
+        max-width: calc(100vw - 20px);
+        max-height: 70vh;
+    }
+
+    .chatbot-header {
+        padding: 12px 15px;
+    }
+    
+    .chatbot-header-info h3 {
+        font-size: 15px;
+    }
+    
+    .chatbot-status {
+        font-size: 10px;
+    }
+    
+    .chatbot-messages {
+        padding: 12px;
     }
 
     .chatbot-button {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
+        bottom: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
     }
 
     .message-bubble {
         max-width: 85%;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .chatbot-input-container {
+        padding: 10px;
+    }
+    
+    .chatbot-input {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .chatbot-send {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .quick-actions {
+        padding: 8px 12px;
+        gap: 6px;
+    }
+    
+    .quick-action-btn {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE STYLES
+   ======================================== */
+
+/* Large Tablets & Small Desktops */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .headerContentBox h1 {
+        font-size: 46px;
+    }
+    
+    .gallerySection .container-fluid h2 {
+        font-size: 80px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+    /* Mobile Navigation */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-link {
+        padding: 15px 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    /* Header Section */
+    .headerWrapper {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .headerContentBox {
+        max-width: 100%;
+        padding: 35px 25px;
+    }
+
+    .headerContentBox h1 {
+        font-size: 38px;
+    }
+    
+    .headerContentBox p {
+        font-size: 15px;
+    }
+
+    .headerImageBox {
+        width: 100%;
+    }
+
+    .headerImageBox img {
+        max-width: 100%;
+        border-radius: 20px;
+    }
+    
+    /* About Section */
+    .about {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-text {
+        text-align: center;
+    }
+    
+    .about-text h2 {
+        font-size: 32px;
+    }
+    
+    .about-images {
+        height: auto;
+    }
+
+    .about-img-2 {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .orange-box {
+        position: static;
+        transform: none;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Steps */
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .step-card {
+        padding: 35px 25px;
+    }
+    
+    /* Gallery */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Reviews */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    /* Contact */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    /* Menu */
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* About Us New Section */
+    .aboutContent h3 {
+        font-size: 36px;
+    }
+    
+    .aboutRight {
+        height: 400px;
+        margin-top: 30px;
+    }
+
+    .aboutRight .topLeft,
+    .aboutRight .topRight {
+        max-width: 220px;
+        padding: 18px;
+        font-size: 14px;
+    }
+    
+    .aboutRight .topLeft {
+        top: -15px;
+        left: -15px;
+    }
+    
+    .aboutRight .topRight {
+        bottom: -15px;
+        right: -15px;
+    }
+    
+    /* Gallery Swiper */
+    .swiper-slide {
+        width: 300px !important;
+        height: 400px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    /* General */
+    .section-padding {
+        padding: 40px 0;
+    }
+    
+    .container {
+        padding: 0 12px;
+        max-width: 100%;
+    }
+    
+    .container-fluid {
+        padding: 0 10px !important;
+        max-width: 100%;
+    }
+    
+    /* Typography */
+    .section-title {
+        font-size: 24px;
+    }
+    
+    /* Navbar */
+    .navbar {
+        height: 55px;
+        padding: 0 10px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    
+    .nav-menu {
+        top: 55px;
+    }
+    
+    .nav-wrapper {
+        padding: 0 5px;
+    }
+    
+    /* Header Section */
+    .headerSection {
+        min-height: auto;
+        padding: 15px 0 20px;
+    }
+    
+    .headerWrapper {
+        padding: 0 12px;
+        gap: 20px;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .headerContentBox {
+        padding: 20px 18px;
+        border-radius: 12px;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    .headerContentBox h1 {
+        font-size: 24px;
+        margin-bottom: 12px;
+        line-height: 1.25;
+        word-wrap: break-word;
+    }
+
+    .headerContentBox p {
+        font-size: 13px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+        word-wrap: break-word;
+    }
+
+    .orderBtn {
+        padding: 12px 24px;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+        display: block;
+        border-radius: 8px;
+    }
+    
+    .headerImageBox {
+        width: 100%;
+    }
+    
+    .headerImageBox img {
+        border-radius: 12px;
+        max-height: 220px;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    /* Hero */
+    .hero {
+        height: 60vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 15px;
+    }
+    
+    /* About Section */
+    .about-text h2 {
+        font-size: 28px;
+    }
+    
+    /* About Us New */
+    .aboutUsScetion {
+        padding: 50px 0;
+    }
+    
+    .aboutContent {
+        padding: 20px 0;
+        text-align: center;
+    }
+    
+    .aboutContent h3 {
+        font-size: 28px;
+    }
+    
+    .aboutContent p {
+        font-size: 15px;
+    }
+    
+    .aboutRight {
+        height: 350px;
+    }
+    
+    .aboutRight .topLeft,
+    .aboutRight .topRight {
+        max-width: 180px;
+        padding: 15px;
+        font-size: 13px;
+        border-radius: 15px;
+    }
+    
+    .aboutRight .topLeft p,
+    .aboutRight .topRight p {
+        font-size: 13px;
+    }
+    
+    /* Gallery */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item {
+        height: 250px;
+    }
+    
+    .gallerySection {
+        padding: 50px 0;
+    }
+    
+    .gallerySection .container-fluid h2 {
+        font-size: 40px;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+    }
+    
+    .swiper-slide {
+        width: 260px !important;
+        height: 350px;
+    }
+    
+    .galleryDishName {
+        font-size: 20px;
+    }
+    
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 16px;
+    }
+    
+    /* Menu */
+    .menu {
+        padding: 60px 0;
+    }
+    
+    .menu-categories {
+        gap: 8px;
+    }
+    
+    .category-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .menu-item {
+        padding: 20px;
+    }
+    
+    /* Reviews */
+    .reviews-section {
+        padding: 60px 0;
+    }
+    
+    .review-card {
+        padding: 25px;
+    }
+    
+    /* Contact */
+    .contact {
+        padding: 60px 0;
+    }
+    
+    .contact-form {
+        padding: 25px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 50px 0 20px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-col h4 {
+        margin-bottom: 15px;
+    }
+    
+    .payment-hygiene {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Steps */
+    .step-card {
+        padding: 30px 20px;
+    }
+    
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .step-card h3 {
+        font-size: 20px;
+    }
+    
+    /* Buttons */
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    /* Rolling Text */
+    .rolling-text span {
+        font-size: 50px;
+    }
+}
+
+/* Small Mobile Phones */
+@media (max-width: 480px) {
+    .navbar {
+        height: 50px;
+        padding: 0 8px;
+    }
+    
+    .logo h1 {
+        font-size: 18px;
+        letter-spacing: 0.5px;
+    }
+    
+    .nav-menu {
+        top: 50px;
+    }
+    
+    .headerSection {
+        padding: 10px 0 15px;
+    }
+    
+    .headerWrapper {
+        padding: 0 8px;
+        gap: 15px;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .headerContentBox {
+        padding: 18px 15px;
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .headerContentBox h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .headerContentBox p {
+        font-size: 12px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+    
+    .orderBtn {
+        padding: 10px 18px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+    
+    .headerImageBox {
+        width: 100%;
+    }
+    
+    .headerImageBox img {
+        max-height: 180px;
+        border-radius: 10px;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .aboutContent h3 {
+        font-size: 22px;
+    }
+    
+    .gallerySection .container-fluid h2 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+    
+    .swiper-slide {
+        width: 220px !important;
+        height: 280px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .aboutRight .topLeft,
+    .aboutRight .topRight {
+        display: none;
+    }
+    
+    .aboutRight {
+        height: 250px;
+    }
+    
+    .review-card {
+        padding: 18px;
+    }
+    
+    .review-card p {
+        font-size: 13px;
+    }
+    
+    .menu-item-header h3 {
+        font-size: 15px;
+    }
+    
+    .price {
+        font-size: 15px;
+    }
+    
+    /* Chatbot adjustments */
+    .chatbot-button {
+        bottom: 10px;
+        right: 10px;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .chatbot-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .headerSection {
+        min-height: auto;
+        padding: 20px 0;
+    }
+    
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .chatbot-window {
+        height: 100%;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .chatbot-button,
+    .chatbot-window,
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    .headerSection {
+        min-height: auto;
+        padding: 20px 0;
     }
 }

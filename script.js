@@ -1,12 +1,16 @@
 // Mobile Menu Toggle
 const menuToggle = document.getElementById('menuToggle');
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
+// Handle both old and new menu toggle buttons
+const activeMenuToggle = mobileMenuToggle || menuToggle;
+
+if (activeMenuToggle) {
+    activeMenuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
+        activeMenuToggle.classList.toggle('active');
     });
 }
 
@@ -14,8 +18,18 @@ if (menuToggle) {
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (navMenu) navMenu.classList.remove('active');
-        if (menuToggle) menuToggle.classList.remove('active');
+        if (activeMenuToggle) activeMenuToggle.classList.remove('active');
     });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu && activeMenuToggle) {
+        if (!navMenu.contains(e.target) && !activeMenuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            activeMenuToggle.classList.remove('active');
+        }
+    }
 });
 
 // Navbar scroll effect
