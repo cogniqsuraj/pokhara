@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@400;500;600&display=swap');
+
 :root {
     --primary: #b81508;
     --primary-hover: #9b1206;
@@ -29,17 +31,21 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+/* Body background reset */
+body {
     background-color: var(--bg);
     color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    max-width: 100vw;
 }
 
 /* Prevent any element from causing horizontal scroll */
-img, video, iframe, embed, object {
+img,
+video,
+iframe,
+embed,
+object {
     max-width: 100%;
     height: auto;
 }
@@ -109,15 +115,19 @@ ul {
 
 /* Header & Nav Refinements */
 .navbar {
-    height: 70px;
+    min-height: 70px;
+    /* Changed from height to min-height */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     position: sticky;
+    /* Sticky position to keep it at top */
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
+    overflow: hidden;
+    /* Force hide any scrollbars */
 }
 
 .nav-wrapper {
@@ -129,10 +139,20 @@ ul {
 
 .logo h1 {
     color: var(--text);
-    font-size: 32px;
-    letter-spacing: 2px;
+    font-size: 38px;
+    /* Increased size */
+    letter-spacing: 1px;
     margin: 0;
-    font-family: var(--font-heading);
+    font-family: 'Cinzel Decorative', cursive;
+    /* New Font */
+    font-weight: 700;
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .nav-menu {
@@ -175,6 +195,8 @@ ul {
 }
 
 .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    /* New Font */
     font-weight: 600;
     font-size: 14px;
     color: #444;
@@ -183,7 +205,7 @@ ul {
     align-items: center;
     gap: 8px;
     transition: 0.3s;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
 }
 
 .nav-link.active {
@@ -212,7 +234,6 @@ ul {
 .headerSection {
     min-height: calc(100vh - 70px);
     position: relative;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
     display: flex;
     align-items: center;
     padding: 60px 0;
@@ -226,26 +247,24 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover no-repeat;
-    filter: blur(8px) brightness(0.4);
-    transform: scale(1.1);
+    background: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1725989079php2CBZrS.jpg') center/cover no-repeat;
     z-index: 1;
 }
 
-.headerSection::after {
+/* .headerSection::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 180, 50, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 150, 50, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255, 200, 100, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(255, 170, 50, 0.2) 0%, transparent 45%);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
     z-index: 2;
-}
+} */
+
+
+
+/* Background moved to body for fixed effect */
 
 .headerWrapper {
     max-width: 1400px;
@@ -260,11 +279,13 @@ ul {
 }
 
 .headerContentBox {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 50px 45px;
     border-radius: 20px;
     max-width: 550px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
 }
 
 .headerContentBox h1 {
@@ -282,6 +303,7 @@ ul {
     margin-bottom: 35px;
     line-height: 1.9;
     letter-spacing: 0.3px;
+
 }
 
 .headerImageBox {
@@ -293,11 +315,12 @@ ul {
 
 .headerImageBox img {
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
     height: auto;
-    border-radius: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
     object-fit: cover;
+    border: 5px solid rgba(255, 255, 255, 0.3);
 }
 
 .orderBtn {
@@ -315,7 +338,6 @@ ul {
 
 .orderBtn:hover {
     background-color: #8B0000;
-    transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(179, 0, 0, 0.4);
     color: #fff;
 }
@@ -428,10 +450,20 @@ ul {
 /* Old styles - keeping for compatibility */
 .headerRow {
     background: #ffffff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow */
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid #eeeeee;
+    border: none;
+    justify-content: center;
+    /* Center columns */
+    margin: 40px auto;
+    /* Centering margin */
+    display: flex;
+    position: relative;
+    /* Establish stacking context */
+    z-index: 10;
+    /* Bring above background pseudo-elements */
 }
 
 .headerContent {
@@ -455,7 +487,11 @@ ul {
 
 .headerRight {
     height: 100%;
-    min-height: 500px;
+    min-height: 600px;
+    padding: 15px;
+    /* Add padding to create white border effect */
+    display: flex;
+    align-items: center;
 }
 
 .headerRightImg {
@@ -466,7 +502,7 @@ ul {
 }
 
 .headerRow:hover .headerRightImg {
-    transform: scale(1.05);
+    /* No animation */
 }
 
 @media (max-width: 991px) {
@@ -527,8 +563,16 @@ ul {
     align-items: center;
 }
 
+.aboutUsScetion {
+    position: relative;
+    background-color: var(--bg);
+    /* Ensure opaque background */
+    padding-top: 80px;
+    /* Add some padding */
+}
+
 .about-text h2 {
-    color: var(--primary);
+    color: var(--white);
     font-size: 42px;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -537,9 +581,10 @@ ul {
 
 .about-text p {
     margin-bottom: 25px;
-    color: var(--text-light);
+    color: var(--white);
     font-size: 16px;
     line-height: 1.7;
+
 }
 
 .about-images {
@@ -638,6 +683,19 @@ ul {
 }
 
 /* Payment Video Section */
+.headerSection {
+    padding: 60px 0;
+    position: relative;
+    background-color: transparent;
+    overflow: visible;
+}
+
+.headerSection .container {
+    max-width: 1210px;
+    /* Reduced width to match About Us card */
+    margin: 0 auto;
+}
+
 .paymentSection {
     width: 100%;
     position: relative;
@@ -694,7 +752,8 @@ ul {
 
 /* Reviews */
 .reviews-section {
-    background-color: var(--primary);
+    background-color: rgba(184, 21, 8, 0.8);
+    /* Semi-transparent primary */
     color: var(--white);
     padding: 100px 0;
 }
@@ -712,15 +771,24 @@ ul {
     margin-bottom: 50px;
 }
 
+.footer-col h3,
+.footer-col h4 {
+    color: var(--white);
+}
+
 .footer-col h4 {
     margin-bottom: 25px;
     font-size: 18px;
 }
 
+.footer-col p {
+    color: var(--white);
+}
+
 .footer-col ul li {
     margin-bottom: 12px;
     font-size: 14px;
-    color: var(--text-light);
+    color: #ddd;
 }
 
 .hygiene-badge {
@@ -1232,6 +1300,7 @@ ul {
     color: white;
     padding: 28px 32px;
     border-radius: 20px;
+    border: 5px solid white;
     max-width: 350px;
     z-index: 10;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -1253,6 +1322,7 @@ ul {
     color: white;
     padding: 28px 32px;
     border-radius: 20px;
+    border: 5px solid white;
     max-width: 350px;
     z-index: 10;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -1276,14 +1346,39 @@ ul {
     }
 
     .aboutRight {
-        height: 400px;
+        height: auto;
         margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 5px;
     }
 
-    .aboutRight .topLeft,
+    .aboutRight .aboutImg {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        order: 2;
+    }
+
+    .aboutRight .topLeft {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 20px;
+        border-radius: 15px;
+        order: 1;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
     .aboutRight .topRight {
-        max-width: 250px;
-        padding: 20px;
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 20px;
+        border-radius: 15px;
+        order: 3;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .aboutContent h3 {
@@ -2104,15 +2199,15 @@ textarea.booking-input {
     .chatbot-header {
         padding: 12px 15px;
     }
-    
+
     .chatbot-header-info h3 {
         font-size: 15px;
     }
-    
+
     .chatbot-status {
         font-size: 10px;
     }
-    
+
     .chatbot-messages {
         padding: 12px;
     }
@@ -2129,26 +2224,26 @@ textarea.booking-input {
         padding: 10px 12px;
         font-size: 13px;
     }
-    
+
     .chatbot-input-container {
         padding: 10px;
     }
-    
+
     .chatbot-input {
         padding: 10px 12px;
         font-size: 13px;
     }
-    
+
     .chatbot-send {
         width: 36px;
         height: 36px;
     }
-    
+
     .quick-actions {
         padding: 8px 12px;
         gap: 6px;
     }
-    
+
     .quick-action-btn {
         padding: 5px 10px;
         font-size: 10px;
@@ -2164,11 +2259,11 @@ textarea.booking-input {
     .container {
         padding: 0 30px;
     }
-    
+
     .headerContentBox h1 {
         font-size: 46px;
     }
-    
+
     .gallerySection .container-fluid h2 {
         font-size: 80px;
     }
@@ -2176,11 +2271,12 @@ textarea.booking-input {
 
 /* Tablets */
 @media (max-width: 991px) {
+
     /* Mobile Navigation */
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -2197,28 +2293,28 @@ textarea.booking-input {
         transition: all 0.3s ease;
         z-index: 999;
     }
-    
+
     .nav-menu.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
-    
+
     .nav-menu li {
         width: 100%;
         border-bottom: 1px solid var(--border);
     }
-    
+
     .nav-menu li:last-child {
         border-bottom: none;
     }
-    
+
     .nav-link {
         padding: 15px 0;
         width: 100%;
         justify-content: flex-start;
     }
-    
+
     /* Header Section */
     .headerWrapper {
         flex-direction: column;
@@ -2234,7 +2330,7 @@ textarea.booking-input {
     .headerContentBox h1 {
         font-size: 38px;
     }
-    
+
     .headerContentBox p {
         font-size: 15px;
     }
@@ -2247,21 +2343,21 @@ textarea.booking-input {
         max-width: 100%;
         border-radius: 20px;
     }
-    
+
     /* About Section */
     .about {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .about-text {
         text-align: center;
     }
-    
+
     .about-text h2 {
         font-size: 32px;
     }
-    
+
     .about-images {
         height: auto;
     }
@@ -2278,55 +2374,55 @@ textarea.booking-input {
         max-width: 100%;
         margin-bottom: 20px;
     }
-    
+
     /* Steps */
     .steps-container {
         grid-template-columns: 1fr;
         gap: 25px;
     }
-    
+
     .step-card {
         padding: 35px 25px;
     }
-    
+
     /* Gallery */
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     /* Reviews */
     .reviews-grid {
         grid-template-columns: 1fr;
     }
-    
+
     /* Footer */
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
-    
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
         gap: 20px;
     }
-    
+
     /* Contact */
     .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     /* Menu */
     .menu-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     /* About Us New Section */
     .aboutContent h3 {
         font-size: 36px;
     }
-    
+
     .aboutRight {
         height: 400px;
         margin-top: 30px;
@@ -2338,17 +2434,17 @@ textarea.booking-input {
         padding: 18px;
         font-size: 14px;
     }
-    
+
     .aboutRight .topLeft {
         top: -15px;
         left: -15px;
     }
-    
+
     .aboutRight .topRight {
         bottom: -15px;
         right: -15px;
     }
-    
+
     /* Gallery Swiper */
     .swiper-slide {
         width: 300px !important;
@@ -2358,51 +2454,52 @@ textarea.booking-input {
 
 /* Mobile Phones */
 @media (max-width: 768px) {
+
     /* General */
     .section-padding {
         padding: 40px 0;
     }
-    
+
     .container {
         padding: 0 12px;
         max-width: 100%;
     }
-    
+
     .container-fluid {
         padding: 0 10px !important;
         max-width: 100%;
     }
-    
+
     /* Typography */
     .section-title {
         font-size: 24px;
     }
-    
+
     /* Navbar */
     .navbar {
         height: 55px;
         padding: 0 10px;
     }
-    
+
     .logo h1 {
         font-size: 20px;
         letter-spacing: 1px;
     }
-    
+
     .nav-menu {
         top: 55px;
     }
-    
+
     .nav-wrapper {
         padding: 0 5px;
     }
-    
+
     /* Header Section */
     .headerSection {
         min-height: auto;
         padding: 15px 0 20px;
     }
-    
+
     .headerWrapper {
         padding: 0 12px;
         gap: 20px;
@@ -2419,7 +2516,7 @@ textarea.booking-input {
         margin: 0;
         box-sizing: border-box;
     }
-    
+
     .headerContentBox h1 {
         font-size: 24px;
         margin-bottom: 12px;
@@ -2442,58 +2539,58 @@ textarea.booking-input {
         display: block;
         border-radius: 8px;
     }
-    
+
     .headerImageBox {
         width: 100%;
     }
-    
+
     .headerImageBox img {
         border-radius: 12px;
         max-height: 220px;
         width: 100%;
         object-fit: cover;
     }
-    
+
     /* Hero */
     .hero {
         height: 60vh;
     }
-    
+
     .hero-content h1 {
         font-size: 32px;
     }
-    
+
     .hero-content p {
         font-size: 15px;
     }
-    
+
     /* About Section */
     .about-text h2 {
         font-size: 28px;
     }
-    
+
     /* About Us New */
     .aboutUsScetion {
         padding: 50px 0;
     }
-    
+
     .aboutContent {
         padding: 20px 0;
         text-align: center;
     }
-    
+
     .aboutContent h3 {
         font-size: 28px;
     }
-    
+
     .aboutContent p {
         font-size: 15px;
     }
-    
+
     .aboutRight {
         height: 350px;
     }
-    
+
     .aboutRight .topLeft,
     .aboutRight .topRight {
         max-width: 180px;
@@ -2501,132 +2598,132 @@ textarea.booking-input {
         font-size: 13px;
         border-radius: 15px;
     }
-    
+
     .aboutRight .topLeft p,
     .aboutRight .topRight p {
         font-size: 13px;
     }
-    
+
     /* Gallery */
     .gallery-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .gallery-item {
         height: 250px;
     }
-    
+
     .gallerySection {
         padding: 50px 0;
     }
-    
+
     .gallerySection .container-fluid h2 {
         font-size: 40px;
         letter-spacing: 3px;
         margin-bottom: 30px;
     }
-    
+
     .swiper-slide {
         width: 260px !important;
         height: 350px;
     }
-    
+
     .galleryDishName {
         font-size: 20px;
     }
-    
+
     .swiper-button-prev,
     .swiper-button-next {
         width: 40px;
         height: 40px;
     }
-    
+
     .swiper-button-prev:after,
     .swiper-button-next:after {
         font-size: 16px;
     }
-    
+
     /* Menu */
     .menu {
         padding: 60px 0;
     }
-    
+
     .menu-categories {
         gap: 8px;
     }
-    
+
     .category-btn {
         padding: 8px 16px;
         font-size: 12px;
     }
-    
+
     .menu-grid {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .menu-item {
         padding: 20px;
     }
-    
+
     /* Reviews */
     .reviews-section {
         padding: 60px 0;
     }
-    
+
     .review-card {
         padding: 25px;
     }
-    
+
     /* Contact */
     .contact {
         padding: 60px 0;
     }
-    
+
     .contact-form {
         padding: 25px;
     }
-    
+
     /* Footer */
     .footer {
         padding: 50px 0 20px;
     }
-    
+
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .footer-col h4 {
         margin-bottom: 15px;
     }
-    
+
     .payment-hygiene {
         justify-content: center;
         flex-wrap: wrap;
     }
-    
+
     /* Steps */
     .step-card {
         padding: 30px 20px;
     }
-    
+
     .step-icon {
         width: 60px;
         height: 60px;
         font-size: 24px;
     }
-    
+
     .step-card h3 {
         font-size: 20px;
     }
-    
+
     /* Buttons */
     .btn-primary {
         padding: 12px 25px;
         font-size: 14px;
     }
-    
+
     /* Rolling Text */
     .rolling-text span {
         font-size: 50px;
@@ -2639,20 +2736,20 @@ textarea.booking-input {
         height: 50px;
         padding: 0 8px;
     }
-    
+
     .logo h1 {
         font-size: 18px;
         letter-spacing: 0.5px;
     }
-    
+
     .nav-menu {
         top: 50px;
     }
-    
+
     .headerSection {
         padding: 10px 0 15px;
     }
-    
+
     .headerWrapper {
         padding: 0 8px;
         gap: 15px;
@@ -2660,85 +2757,85 @@ textarea.booking-input {
         width: 100%;
         box-sizing: border-box;
     }
-    
+
     .headerContentBox {
         padding: 18px 15px;
         border-radius: 10px;
         width: 100%;
         box-sizing: border-box;
     }
-    
+
     .headerContentBox h1 {
         font-size: 20px;
         margin-bottom: 10px;
     }
-    
+
     .headerContentBox p {
         font-size: 12px;
         margin-bottom: 12px;
         line-height: 1.5;
     }
-    
+
     .orderBtn {
         padding: 10px 18px;
         font-size: 13px;
         border-radius: 6px;
     }
-    
+
     .headerImageBox {
         width: 100%;
     }
-    
+
     .headerImageBox img {
         max-height: 180px;
         border-radius: 10px;
         width: 100%;
         object-fit: cover;
     }
-    
+
     .aboutContent h3 {
         font-size: 22px;
     }
-    
+
     .gallerySection .container-fluid h2 {
         font-size: 28px;
         letter-spacing: 2px;
     }
-    
+
     .swiper-slide {
         width: 220px !important;
         height: 280px;
     }
-    
+
     .section-title {
         font-size: 20px;
     }
-    
+
     .aboutRight .topLeft,
     .aboutRight .topRight {
         display: none;
     }
-    
+
     .aboutRight {
         height: 250px;
     }
-    
+
     .review-card {
         padding: 18px;
     }
-    
+
     .review-card p {
         font-size: 13px;
     }
-    
+
     .menu-item-header h3 {
         font-size: 15px;
     }
-    
+
     .price {
         font-size: 15px;
     }
-    
+
     /* Chatbot adjustments */
     .chatbot-button {
         bottom: 10px;
@@ -2746,7 +2843,7 @@ textarea.booking-input {
         width: 48px;
         height: 48px;
     }
-    
+
     .chatbot-badge {
         width: 16px;
         height: 16px;
@@ -2760,12 +2857,12 @@ textarea.booking-input {
         min-height: auto;
         padding: 20px 0;
     }
-    
+
     .hero {
         height: auto;
         min-height: 100vh;
     }
-    
+
     .chatbot-window {
         height: 100%;
     }
@@ -2773,15 +2870,50 @@ textarea.booking-input {
 
 /* Print Styles */
 @media print {
+
     .navbar,
     .chatbot-button,
     .chatbot-window,
     .mobile-menu-toggle {
         display: none !important;
     }
-    
+
     .headerSection {
         min-height: auto;
         padding: 20px 0;
     }
+
+    /* About Us Card Style */
+    .about-card {
+        background: #ffffff;
+        border: 5px solid #ffffff;
+        /* Requested 5px white border */
+        border-radius: 30px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        margin: 40px auto;
+        max-width: 1210px;
+        padding: 0;
+    }
+
+    @media (max-width: 991px) {
+        .about-card {
+            margin: 20px;
+            border-radius: 20px;
+        }
+    }
+}
+/* Verified by Visa Logo Utilities */
+.css-175oi2r {
+    display: flex;
+    box-sizing: border-box;
+}
+.r-eqz5dr {
+    flex-direction: column;
+}
+.r-1777fci {
+    justify-content: center;
+}
+.r-ytbthy {
+    align-items: center;
 }

@@ -38,7 +38,7 @@ let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (navbar) {
         if (currentScroll > 100) {
             navbar.classList.add('scrolled');
@@ -46,7 +46,7 @@ window.addEventListener('scroll', () => {
             navbar.classList.remove('scrolled');
         }
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -75,9 +75,9 @@ categoryBtns.forEach(btn => {
         categoryBtns.forEach(b => b.classList.remove('active'));
         // Add active class to clicked button
         btn.classList.add('active');
-        
+
         const category = btn.getAttribute('data-category');
-        
+
         menuItems.forEach(item => {
             if (category === 'all' || item.getAttribute('data-category') === category) {
                 item.style.display = 'block';
@@ -94,7 +94,7 @@ const reservationForm = document.getElementById('reservationForm');
 
 reservationForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Get form values
     const formData = {
         name: document.getElementById('name').value,
@@ -105,38 +105,21 @@ reservationForm.addEventListener('submit', (e) => {
         guests: document.getElementById('guests').value,
         message: document.getElementById('message').value
     };
-    
+
     // Here you would normally send the data to a server
     console.log('Reservation Details:', formData);
-    
+
     // Show success message
     alert('Thank you for your reservation! We will contact you shortly to confirm.');
-    
+
     // Reset form
     reservationForm.reset();
 });
 
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all sections for scroll animations
+// Animations removed as per user request
 document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
+    section.style.opacity = '1';
+    section.style.transform = 'none';
 });
 
 // Gallery lightbox effect (simple implementation)
@@ -146,7 +129,7 @@ galleryItems.forEach(item => {
     item.addEventListener('click', () => {
         const img = item.querySelector('img');
         const overlay = item.querySelector('.gallery-overlay h3');
-        
+
         // You can implement a full lightbox modal here
         console.log('Clicked:', overlay.textContent);
     });
@@ -159,21 +142,13 @@ if (dateInput) {
     dateInput.setAttribute('min', today);
 }
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const headerSection = document.querySelector('.headerSection');
-    const scrolled = window.pageYOffset;
-    if (headerSection && scrolled < 800) {
-        headerSection.style.transform = `translateY(${scrolled * 0.3}px)`;
-        headerSection.style.opacity = `${1 - scrolled * 0.001}`;
-    }
-});
+// Parallax effect removed as per user request
 
 // Counter animation for stats (if you add stats section)
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    
+
     const timer = setInterval(() => {
         start += increment;
         if (start >= target) {
@@ -221,7 +196,7 @@ function validateEmail(email) {
 window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('section');
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -229,7 +204,7 @@ window.addEventListener('scroll', () => {
             current = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -240,7 +215,7 @@ window.addEventListener('scroll', () => {
 
 // Initialize Swiper for Gallery
 if (typeof Swiper !== 'undefined') {
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         const swiperEl = document.querySelector('.swiper-container');
         if (swiperEl) {
             const swiper = new Swiper('.swiper-container', {
