@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POKHARA Menu | Get 15% OFF | Order Online</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #b81508;
+            --primary-light: #fef2f2;
+            --text: #111111;
+            --text-light: #666666;
+            --bg: #f9f9f9;
+            --white: #ffffff;
+            --border: #eeeeee;
+            --accent: #198ebc;
+            --shadow: rgba(17, 17, 17, 0.05);
+            --shadow-strong: rgba(17, 17, 17, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        .navbar {
+            height: 70px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links li a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-links li a.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-links li a svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Restaurant Info Card */
+        .info-section {
+            max-width: 1200px;
+            margin: -60px auto 0;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 40px var(--shadow-strong);
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .info-header h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .address {
+            font-size: 14px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-right {
+            text-align: right;
+        }
+
+        .info-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            justify-content: flex-end;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .rating span {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        /* Toggle Switches */
+        .order-controls {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .toggle-group {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 50px;
+            padding: 4px;
+        }
+
+        .toggle-btn {
+            padding: 8px 24px;
+            border-radius: 50px;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .toggle-btn.active {
+            background: var(--white);
+            color: var(--text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-btn small {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .action-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text);
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Banner Notice */
+        .notice-banner {
+            background: #fff4d6;
+            padding: 16px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            border: 1px solid #ffd04b;
+        }
+
+        .notice-badge {
+            background: var(--primary);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .notice-text {
+            font-size: 14px;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        /* Offer Section */
+        .offer-row {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 24px;
+        }
+
+        .offer-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .offer-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(184, 21, 8, 0.1);
+        }
+
+        .offer-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .offer-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .offer-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .offer-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Main Menu Layout */
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr) 320px;
+            gap: 20px;
+            padding: 0 20px 80px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: sticky;
+            top: 94px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 8px 0;
+            box-shadow: 0 4px 15px var(--shadow);
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar li.active {
+            border-left-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .sidebar li.active a {
+            color: var(--primary);
+        }
+
+        .sidebar li:hover:not(.active) a {
+            background: #f9f9f9;
+        }
+
+        /* Recommended Section */
+        .recommended {
+            background: #f0faff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid #d0e8f2;
+        }
+
+        .h-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+        }
+
+        .rec-item {
+            min-width: 180px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .rec-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 6px 20px rgba(25, 142, 188, 0.1);
+        }
+
+        .rec-name {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: var(--text);
+            height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rec-price {
+            font-weight: 900;
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        /* Categories and Items */
+        .category-block {
+            margin-bottom: 40px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .category-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .category-desc {
+            color: var(--text-light);
+            font-size: 13px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .menu-item {
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .item-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .item-price-action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .item-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .add-btn {
+            width: 32px;
+            height: 32px;
+            background: var(--white);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: sticky;
+            top: 94px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px var(--shadow-strong);
+            max-height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+        }
+
+        .cart-empty svg {
+            width: 60px;
+            height: 60px;
+            fill: #eee;
+            margin-bottom: 16px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 1200px) {
+            .menu-container {
+                grid-template-columns: 1fr 320px;
+                padding: 0 20px 80px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-sidebar {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 24px;
+            }
+
+            .info-section {
+                padding: 0 16px;
+                margin-top: -40px;
+            }
+
+            .info-card {
+                padding: 24px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Pokhara Manor</a>
+        <ul class="nav-links">
+            <li><a href="#" class="active"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg> Order Now</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <img src="https://assets.foodhub.com/static/7bf61517155adc94ef751351ce40234c/img/1727426993phpI5nOYC.jpg"
+            alt="POKHARA Food">
+    </div>
+
+    <div class="info-section">
+        <div class="info-card">
+            <div class="info-header">
+                <div>
+                    <h1>POKHARA</h1>
+                    <div class="address">
+                        <svg viewBox="0 0 24 24" width="18" fill="var(--primary)">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        Court Colman Manor, Pen-y-fai, Bridgend CF31 4NG
+                    </div>
+                </div>
+                <div class="info-right">
+                    <a href="#" class="info-link">
+                        <svg viewBox="0 0 24 24" width="18" fill="currentColor">
+                            <path
+                                d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z" />
+                        </svg>
+                        Info
+                    </a>
+                    <div class="rating">
+                        <svg viewBox="0 0 24 24" width="20" fill="#ffb400">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        4.4 <span>(36 reviews)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-controls">
+                <div class="toggle-group">
+                    <button class="toggle-btn active" onclick="setOrderType('delivery')">
+                        <span>🚗</span>
+                        <div>
+                            <strong>Delivery</strong>
+                            <small>Pre-order (45-60 min)</small>
+                        </div>
+                    </button>
+                    <button class="toggle-btn" onclick="setOrderType('pickup')">
+                        <span>🛍️</span>
+                        <div>
+                            <strong>Pickup</strong>
+                            <small>Pre-order (15-20 min)</small>
+                        </div>
+                    </button>
+                </div>
+                <button class="action-btn">
+                    <span>🕒</span>
+                    Schedule
+                </button>
+                <button class="action-btn">
+                    <span>👥</span>
+                    Group Order
+                </button>
+            </div>
+
+            <div class="notice-banner">
+                <span class="notice-badge">Pre-order</span>
+                <span class="notice-text">Sorry, our website is currently only taking pre-orders. Thank you for your
+                    patience.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer-row">
+        <div class="offer-card">
+            <div class="offer-left">
+                <div class="offer-icon">%</div>
+                <div class="offer-text">Get 15% OFF</div>
+            </div>
+            <div class="offer-right">
+                1 Offer Available
+                <svg viewBox="0 0 24 24" width="20" fill="currentColor">
+                    <path d="M7 10l5 5 5-5z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-container">
+        <aside class="sidebar">
+            <ul id="sidebar-list">
+                <!-- Categories injected here -->
+            </ul>
+        </aside>
+
+        <main class="menu-content">
+            <div class="recommended">
+                <div class="section-header"
+                    style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 13px; font-weight: 900; color: var(--text); letter-spacing: 1px; text-transform: uppercase;">
+                    <svg viewBox="0 0 24 24" width="18" fill="var(--primary)">
+                        <path
+                            d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+                    </svg>
+                    Recommended For You
+                </div>
+                <div class="h-scroll" id="recommended-items">
+                    <!-- Recommended items injected here -->
+                </div>
+            </div>
+
+            <div id="menu-sections">
+                <!-- Menu sections injected here -->
+            </div>
+        </main>
+
+        <aside class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                🛒 Your Basket
+            </div>
+            <div class="cart-items" id="cart-items">
+                <div class="cart-empty">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z" />
+                    </svg>
+                    <p>Your basket is empty.<br>Add some delicious food!</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total-price">£0.00</span>
+                </div>
+                <button class="checkout-btn" disabled id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </aside>
+    </div>
+
+    <div class="scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <svg viewBox="0 0 24 24" width="24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+        </svg>
+    </div>
+
+    <script>
+        const menuData = [
+            {
+                name: "English Starters",
+                desc: "A selection of classic English appetizers",
+                items: [
+                    { name: "Creamy Tomato Soup", price: "6.00", desc: "Vegetarian. With bread & butter (vegan option available)." },
+                    { name: "BBQ Chicken Skewers", price: "8.00", desc: "Juicy grilled chicken skewers glazed with a sweet and smoky honey-BBQ sauce." },
+                    { name: "Lamb Cawl", price: "8.00", desc: "Traditional homemade Welsh lamb stew served with bread." },
+                    { name: "Prawn Cocktail", price: "7.00", desc: "Prawns tossed in a classic Marie Rose sauce." }
+                ]
+            },
+            {
+                name: "Burgers",
+                desc: "All Burgers Served With Fries (Upgrade To Loaded Dirty Fries For +£2)",
+                items: [
+                    { name: "Veggie Supreme Burger and Chips", price: "10.00", desc: "A golden-fried veggie patty stacked with fresh vegetables and house mayo." },
+                    { name: "Crunchy Chicken Burger and Chips", price: "12.00", desc: "Crisp-coated chicken breast fillet, deep-fried to perfection." },
+                    { name: "Salt & Pepper Crispy Chicken Burger and Chips", price: "13.00", desc: "Crispy chicken tossed in bold salt & pepper seasoning." },
+                    { name: "6oz Steakhouse Cheeseburger and Chips", price: "14.00", desc: "Juicy 6oz beef steak patty grilled with cheddar and onions." }
+                ]
+            },
+            {
+                name: "Famous Naan Rolls",
+                desc: "Freshly baked naan rolls served with garden salad and house sauce",
+                items: [
+                    { name: "Chicken And Lamb Tikka Nan Roll", price: "8.00", desc: "Combination of tender chicken and lamb tikka wrapped in naan." },
+                    { name: "Chicken Tikka Naan Roll", price: "7.00", desc: "Classic chicken tikka wrapped in fresh tandoori naan." },
+                    { name: "Lamb Tikka Naan Roll", price: "7.00", desc: "Succulent lamb tikka pieces in a soft naan roll." },
+                    { name: "Chicken Tikka Garlic Naan Roll", price: "7.50", desc: "Chicken tikka wrapped in our signature garlic-infused naan." }
+                ]
+            },
+            {
+                name: "Hotel Menu Main Course",
+                desc: "Traditional hotel favorites",
+                items: [
+                    { name: "Cod Fish & Chips", price: "14.00", desc: "Served with garden peas or mushy peas." },
+                    { name: "Scampi & Chips", price: "12.00", desc: "Golden breaded scampi served with chips and peas." },
+                    { name: "Hunter's Chicken", price: "14.50", desc: "Grilled chicken topped with bacon, BBQ sauce, and melted cheese." },
+                    { name: "Chef Special Curry of the Day", price: "12.00", desc: "Ask for today's special selection." }
+                ]
+            },
+            {
+                name: "Nepalese Starters",
+                desc: "Authentic Himalayan appetizers",
+                items: [
+                    { name: "Momo (Chicken/Veg)", price: "6.95", desc: "Traditional Nepalese steamed dumplings served with tomato chutney." },
+                    { name: "Onion Bhaji (V)", price: "5.00", desc: "Crispy onion fritters with aromatic spices and gram flour." },
+                    { name: "Samosa (Veg/Meat)", price: "4.50", desc: "Spiced pastry filled with your choice of vegetables or minced meat." },
+                    { name: "Chicken Tikka Starter", price: "5.95", desc: "Boneless chicken marinated in yogurt and spices, grilled in tandoor." }
+                ]
+            },
+            {
+                name: "Tandoori Specialties",
+                desc: "Grilled to perfection in our clay oven",
+                items: [
+                    { name: "Tandoori Chicken (Half)", price: "9.95", desc: "Chicken on the bone marinated in spiced yogurt and grilled." },
+                    { name: "Seekh Kebab", price: "10.00", desc: "Minced lamb with herbs and spices, skewered and grilled." },
+                    { name: "Lamb Chops (4pcs)", price: "12.95", desc: "Tender lamb chops marinated in ginger, garlic, and hot spices." }
+                ]
+            },
+            {
+                name: "Main Courses",
+                desc: "Our chef's specialty Nepalese and Indian dishes",
+                items: [
+                    { name: "Pokhara Special Thali", price: "15.95", desc: "A complete meal with dal, bhat, vegetable curry, meat curry, and pickles." },
+                    { name: "Chicken Tikka Masala", price: "9.95", desc: "The nation's favorite: tender chicken in a creamy tomato sauce." },
+                    { name: "Lamb Rogan Josh", price: "11.95", desc: "Aromatic lamb curry cooked with traditional Kashmiri spices." },
+                    { name: "King Prawn Jalfrezi", price: "13.95", desc: "Spicy and tangy king prawn curry with peppers and onions." }
+                ]
+            },
+            {
+                name: "Rice & Breads",
+                desc: "Perfect accompaniments to your main course",
+                items: [
+                    { name: "Pilau Rice", price: "4.00", desc: "Fragrant basmati rice cooked with mild spices." },
+                    { name: "Mushroom Rice", price: "5.00", desc: "Basmati rice tossed with fresh mushrooms and herbs." },
+                    { name: "Garlic Naan", price: "4.00", desc: "Freshly baked bread topped with garlic and coriander." },
+                    { name: "Peshwari Naan", price: "4.50", desc: "Sweet naan filled with nuts, raisins, and coconut." }
+                ]
+            }
+        ];
+
+        const recItemsData = [
+            { name: "Pilau Rice", price: "4.00" },
+            { name: "Chips", price: "4.00" },
+            { name: "Onion Bhaji (V)", price: "5.00" },
+            { name: "Garlic Naan", price: "4.00" },
+            { name: "Mushroom Rice", price: "5.00" }
+        ];
+
+        let cart = [];
+        let orderType = 'delivery';
+
+        const sidebarList = document.getElementById('sidebar-list');
+        const recommendedRow = document.getElementById('recommended-items');
+        const sectionsContainer = document.getElementById('menu-sections');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        function setOrderType(type) {
+            orderType = type;
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                const isActive = (type === 'delivery' && btn.innerText.includes('Delivery')) ||
+                    (type === 'pickup' && btn.innerText.includes('Pickup'));
+                btn.classList.toggle('active', isActive);
+            });
+        }
+
+        // Render Sidebar
+        menuData.forEach((cat, idx) => {
+            const li = document.createElement('li');
+            if (idx === 0) li.className = 'active';
+            li.innerHTML = `<a href="#cat-${idx}">${cat.name}</a>`;
+            sidebarList.appendChild(li);
+        });
+
+        // Render Recommended
+        recItemsData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'rec-item';
+            div.onclick = () => addToCart(item.name, item.price);
+            div.innerHTML = `
+                <div class="rec-name">${item.name}</div>
+                <div class="rec-price">£${item.price}</div>
+            `;
+            recommendedRow.appendChild(div);
+        });
+
+        // Render Menu Sections
+        menuData.forEach((cat, idx) => {
+            const block = document.createElement('div');
+            block.className = 'category-block';
+            block.id = `cat-${idx}`;
+
+            let itemsHtml = '';
+            cat.items.forEach(item => {
+                itemsHtml += `
+                    <div class="menu-item" onclick="addToCart('${item.name}', '${item.price}')">
+                        <div class="item-info">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-desc">${item.desc}</div>
+                        </div>
+                        <div class="item-price-action">
+                            <div class="item-price">£${item.price}</div>
+                            <div class="add-btn">+</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            block.innerHTML = `
+                <h2 class="category-title">${cat.name}</h2>
+                <p class="category-desc">${cat.desc}</p>
+                <div class="items-grid">${itemsHtml}</div>
+            `;
+            sectionsContainer.appendChild(block);
+        });
+
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price: parseFloat(price), qty: 1 });
+            }
+            updateCart();
+        }
+
+        function removeFromCart(name) {
+            const index = cart.findIndex(i => i.name === name);
+            if (index > -1) {
+                if (cart[index].qty > 1) {
+                    cart[index].qty--;
+                } else {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <svg viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
+                        <p>Your basket is empty.<br>Add some delicious food!</p>
+                    </div>
+                `;
+                cartTotalPrice.innerText = '£0.00';
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            let total = 0;
+            cartItemsContainer.innerHTML = cart.map(item => {
+                const subtotal = (item.price * item.qty).toFixed(2);
+                total += parseFloat(subtotal);
+                return `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; align-items: center;">
+                        <div style="flex: 1;">
+                            <strong>${item.qty}x</strong> ${item.name}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>£${subtotal}</span>
+                            <span style="color:var(--primary); cursor:pointer; font-weight: 800; font-size: 18px;" onclick="removeFromCart('${item.name}')">−</span>
+                            <span style="color:var(--accent); cursor:pointer; font-weight: 800; font-size: 18px;" onclick="addToCart('${item.name}', '${item.price}')">+</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            cartTotalPrice.innerText = `£${total.toFixed(2)}`;
+            checkoutBtn.disabled = false;
+        }
+
+        // Scroll spy
+        window.addEventListener('scroll', () => {
+            let current = "";
+            menuData.forEach((cat, idx) => {
+                const section = document.getElementById(`cat-${idx}`);
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 120) {
+                    current = `cat-${idx}`;
+                }
+            });
+
+            document.querySelectorAll('.sidebar li').forEach(li => {
+                li.classList.remove('active');
+                if (li.querySelector('a').getAttribute('href') === `#${current}`) {
+                    li.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
